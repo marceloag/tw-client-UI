@@ -1,0 +1,241 @@
+@import "compass/css3";
+@import "compass/reset";
+@import "colores";
+
+$width:560px;
+
+@mixin circle($width : 100px) {
+	width: $width;
+	height: $width;
+	@include border-radius($width);
+}
+
+@mixin animate($property: "all", $duration: .2s ){
+	@include transition-property($property);
+	@include transition-duration($duration);
+	@include transition-timing-function(ease);
+}
+
+
+*{
+	box-sizing:border-box;
+}
+body{
+	font-family: 'Quicksand';
+	color: $asbestos;
+	font-size: 14px;
+	background-color: #ededed;
+}
+
+.arrow-down {
+	width: 0; 
+	height: 0; 
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;	
+	border-top: 12px solid $clouds;
+}
+
+.bubble{
+	width: 100%;
+	padding: .5em 1em;
+	line-height: 1.4em;
+	padding: 20px;
+	background-color: $clouds;
+	position: relative;
+	@include border-radius(8px);
+	text-align: left;
+	display: inline-block;
+	&:hover > .over-bubble{
+		opacity: 1;
+	}
+}
+.bubble-container{
+	width: 75%;
+	display: block;
+	position: relative;
+	padding-left: 20px;
+	vertical-align: top;
+	display: inline-block;
+}
+.arrow{
+  content:'';
+  display:block;
+  position:absolute;
+  left:12px;
+  bottom: 25%;
+  height:0;
+  width:0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid $clouds;
+}
+.timeline{
+	width: $width;
+	display: block;
+	margin: auto;
+	background-color: $clouds - 15;
+	padding-bottom: 2em;
+	@include box-shadow($silver 0 5px 5px);
+	@include border-bottom-left-radius(8px);
+	@include border-bottom-right-radius(8px);
+	margin-bottom: 2em;
+	li{
+		padding: 1em 0;
+	}
+	li:nth-child(even){
+		background-color: $clouds - 25;
+	}
+}
+.avatar{
+	width: 18%;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	overflow: hidden;
+	img{
+		width: 100%;
+		@include border-radius(50%);
+		border: 5px solid $clouds;
+		position: relative;
+	}
+	margin-left: 2%;
+	&:hover > .hover{
+		cursor: pointer;
+		opacity: 1;
+	}
+
+}
+
+.hover{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: $peterriver;
+	top: 0;
+	font-size: 1.8em;
+	border: 5px solid $peterriver + 40;
+	@include border-radius(50%);
+	text-align: center;
+	color: white;
+	padding-top: 24%;
+	opacity: 0;
+	font-family: 'FontAwesome';
+	font-weight: 300;
+		@include transition-property(all);
+		@include transition-duration(.5s);
+		@include transition-timing-function(ease);
+
+}
+
+.first{
+	width: $width;
+	display: block;
+	margin: auto;
+	background-color: $peterriver;
+	@include text-shadow($peterriver - 20 1px 1px 0);
+	padding: 1em 0 !important;
+	color: white;
+	text-align: center;
+	margin-top: 1em;
+	font-family: "Lato";
+	font-size: 1.6em;
+	@include border-top-left-radius(8px);
+	@include border-top-right-radius(8px);
+	position: relative;
+}
+.icon-twitter{
+	font-size: 1.5em;
+}
+
+.new{
+	position: absolute;
+	right: 5%;
+
+}
+
+.over-bubble{
+	line-height: 1.4em;
+	padding-top: 10%;
+	background-color: rgba($clouds, .8);
+	position: relative;
+	@include border-radius(8px);
+	text-align: center;
+	display: inline-block;
+	position: absolute !important;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	@include transition-property(all);
+	@include transition-duration(.3s);
+	@include transition-timing-function(ease-in);
+	font-size: 2.8em;
+	@include text-shadow(white 1px 1px 0);
+}
+
+.action{
+	margin-right: .3em;
+	@include transition-property(all);
+	@include transition-duration(.2s);
+	@include transition-timing-function(ease-in);
+
+}
+.icon-star{
+	@include animate();
+	&:hover{
+		cursor: pointer;
+		color: $orange;
+	}
+}
+.icon-retweet{
+	@include animate();
+	&:hover{
+		cursor: pointer;
+		color: $greensea;
+	}
+}
+.icon-mail-reply{
+	@include animate();
+	&:hover{
+		cursor: pointer;
+		color: $peterriver;
+	}
+}
+h3{
+	font-size: 1.2em;
+	font-weight: bold;
+	font-family: 'Lato';
+	display: inline-block;
+	margin-bottom: .2em;
+	color: $concrete;
+}
+.retweet{
+	position: absolute;
+	opacity: 1;
+	top: 0;
+	right: 1em;
+	display: block;
+	background-color: $greensea;
+	padding: 4px;
+	@include border-bottom-left-radius(5px);
+	@include border-bottom-right-radius(5px);
+	.icon-retweet{
+		color: white;
+		margin: auto;
+		width: 100%;
+		display: block;
+		font-size: 1.2em;
+	}
+}
+footer{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 5em;
+	background-color: rgba(#000, .8);
+	z-index: 999;
+	display: block;
+}
+
